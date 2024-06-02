@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tap_status_bar/status_bar_tap_notifier/status_bar_tap_notifier.dart';
+import 'package:tap_status_bar/tap_status_bar_notifier/tap_status_bar_notifier.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
@@ -102,8 +102,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return StatusBarTapNotifier(
-      onStatusBarTap: () => _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear),
+    return TapStatusBarNotifier(
+      onTapStatusBar: () => _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear),
       child: Scaffold(
         appBar: AppBar(),
         body: ListView.builder(
@@ -140,8 +140,8 @@ class _LikeState extends State<Like> {
 
   @override
   Widget build(BuildContext context) {
-    return StatusBarTapNotifier(
-      onStatusBarTap: () => _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear),
+    return TapStatusBarNotifier(
+      onTapStatusBar: () => _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear),
       child: Scaffold(
         appBar: AppBar(),
         body: ListView.builder(

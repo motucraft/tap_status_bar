@@ -4,17 +4,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-class StatusBarTapNotifier extends StatefulWidget {
+class TapStatusBarNotifier extends StatefulWidget {
   final Widget child;
-  final VoidCallback onStatusBarTap;
+  final VoidCallback onTapStatusBar;
 
-  const StatusBarTapNotifier({super.key, required this.child, required this.onStatusBarTap});
+  const TapStatusBarNotifier({super.key, required this.child, required this.onTapStatusBar});
 
   @override
-  State<StatusBarTapNotifier> createState() => _StatusBarTapNotifierState();
+  State<TapStatusBarNotifier> createState() => _TapStatusBarNotifierState();
 }
 
-class _StatusBarTapNotifierState extends State<StatusBarTapNotifier> {
+class _TapStatusBarNotifierState extends State<TapStatusBarNotifier> {
   ScrollController? _primaryScrollController;
   _CustomScrollPositionWithSingleContext? _scrollPositionWithSingleContext;
 
@@ -27,7 +27,7 @@ class _StatusBarTapNotifierState extends State<StatusBarTapNotifier> {
     if (_primaryScrollController != null) {
       _scrollPositionWithSingleContext = _CustomScrollPositionWithSingleContext(
         context: context,
-        callback: widget.onStatusBarTap,
+        callback: widget.onTapStatusBar,
       );
       _primaryScrollController!.attach(_scrollPositionWithSingleContext!);
     }
