@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tap_status_bar/status_bar_tap_notifier/status_bar_tap_notifier.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -87,31 +88,77 @@ class _RootState extends State<Root> {
   }
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  late final ScrollController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView.builder(
-        itemCount: 20,
-        itemBuilder: (_, index) => ListTile(title: Text('Home ${index + 1}')),
+    return StatusBarTapNotifier(
+      onStatusBarTap: () => _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear),
+      child: Scaffold(
+        appBar: AppBar(),
+        body: ListView.builder(
+          controller: _controller,
+          itemCount: 20,
+          itemBuilder: (_, index) => ListTile(title: Text('Home ${index + 1}')),
+        ),
       ),
     );
   }
 }
 
-class Like extends StatelessWidget {
+class Like extends StatefulWidget {
   const Like({super.key});
 
   @override
+  State<Like> createState() => _LikeState();
+}
+
+class _LikeState extends State<Like> {
+  late final ScrollController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView.builder(
-        itemCount: 20,
-        itemBuilder: (_, index) => ListTile(title: Text('Like ${index + 1}')),
+    return StatusBarTapNotifier(
+      onStatusBarTap: () => _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear),
+      child: Scaffold(
+        appBar: AppBar(),
+        body: ListView.builder(
+          controller: _controller,
+          itemCount: 20,
+          itemBuilder: (_, index) => ListTile(title: Text('Like ${index + 1}')),
+        ),
       ),
     );
   }
