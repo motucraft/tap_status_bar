@@ -103,7 +103,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return TapStatusBarNotifier(
-      onTapStatusBar: () => _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear),
+      onTapStatusBar: () {
+        if (GoRouter.of(context).routerDelegate.currentConfiguration.last.matchedLocation == '/home') {
+          _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear);
+        }
+      },
       child: Scaffold(
         appBar: AppBar(),
         body: ListView.builder(
@@ -141,7 +145,11 @@ class _LikeState extends State<Like> {
   @override
   Widget build(BuildContext context) {
     return TapStatusBarNotifier(
-      onTapStatusBar: () => _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear),
+      onTapStatusBar: () {
+        if (GoRouter.of(context).routerDelegate.currentConfiguration.last.matchedLocation == '/like') {
+          _controller.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.linear);
+        }
+      },
       child: Scaffold(
         appBar: AppBar(),
         body: ListView.builder(
